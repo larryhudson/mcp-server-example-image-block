@@ -1,32 +1,13 @@
-# [Template] MCP Server
-
-## How to use this template
-
-- Add tool definitions in src/index.ts
-- Update the README below
-- Update the placeholder info in package.json
-- Test building the MCP server with `npm run build`, and using the @modelcontextprotocol/inspector library
-- Publish to npm: `npm login`, `npm publish --access public`
+# Example MCP Server with image blocks
 
 ## Overview
 
-[Insert overview here]
+An example MCP server that returns a random image from the [Lorem Picsum API](https://picsum.photos/). This is just an example to show how MCP servers can return image blocks.
 
-## Features
-
-[Insert features here]
-
-## Setup
-
-1. Create a API key etc.
-2. Set the token as an environment variable:
-
-```bash
-export API_KEY_ENV_VAR=the_secret_api_key
-```
+See also: [Image Content in the Model Context Protocol specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#image-content)
 
 ## Usage
-
+ 
 ### Using with VS Code
 
 Add this to your settings JSON file:
@@ -34,24 +15,13 @@ Add this to your settings JSON file:
 ```json
 {
   "mcp": {
-    "inputs": [
-      {
-        "type": "promptString",
-        "id": "some_secret_api_key",
-        "description": "Secret API key",
-        "password": true
-      }
-    ],
     "servers": {
-      "[library-name]": {
+      "random_image": {
         "command": "npx",
         "args": [
           "-y",
-          "@larryhudson/[the-library]"
+          "@larryhudson/mcp-server-example-image-block"
         ],
-        "env": {
-          "API_KEY_ENV_VAR": "${input:some_secret_api_key}"
-        }
       }
     }
   }
@@ -65,12 +35,9 @@ Add this to your MCP configuration JSON file:
 ```json
 {
   "mcpServers": {
-    "notion": {
+    "random_image": {
       "command": "npx",
-      "args": ["-y", "@larryhudson/[the-library]"],
-      "env": {
-        "API_KEY_ENV_VAR": "<THE_SECRET_API_KEY>"
-      }
+      "args": ["-y", "@larryhudson/mcp-server-example-image-block"],
     }
   }
 }
@@ -78,11 +45,7 @@ Add this to your MCP configuration JSON file:
 
 ## Available Tools
 
-[List the tools here]
-
-## How It Works
-
-[Some info about how it works]
+- `get_random_image` - get a random image using the Lorem Picsum API.
 
 ## Technical Details
 
@@ -97,10 +60,6 @@ You can use the Model Context Protocol inspector to try out the server:
 ```bash
 npx @modelcontextprotocol/inspector npx tsx src/index.ts
 ```
-
-
-## Limitations and Future Improvements
-
 
 ## License
 
